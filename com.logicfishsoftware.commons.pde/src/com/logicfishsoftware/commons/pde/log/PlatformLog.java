@@ -4,7 +4,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 
-@SuppressWarnings("restriction")
 public class PlatformLog {
 	public static void warn(String id,Exception e) {
 		try {

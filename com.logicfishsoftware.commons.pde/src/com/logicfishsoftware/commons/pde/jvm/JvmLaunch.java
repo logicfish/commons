@@ -190,7 +190,6 @@ public class JvmLaunch {
 
 		workingCopy.setAttribute(IJavaLaunchConfigurationConstants.ATTR_VM_ARGUMENTS,
 				StringUtils.join(vmargs," "));
-				//"-mx512m");
 
 		workingCopy.setAttribute(IJavaLaunchConfigurationConstants.ATTR_MAIN_TYPE_NAME,
 				mainClass);
