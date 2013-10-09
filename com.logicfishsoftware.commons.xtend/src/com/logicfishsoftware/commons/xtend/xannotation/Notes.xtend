@@ -15,7 +15,7 @@ class Notes {
 		Notes::notesAsClasses(cls,"value",declaration,context)
 	}
 	def static Iterable<TypeDeclaration> notesAsClasses(Class<?> cls,String property,AnnotationTarget declaration,extension TypeLookup context) {
-		val note = declaration.findAnnotation(cls.findTypeGlobally).getValue(property)		
+		val note = declaration.findAnnotation(cls.findTypeGlobally).getValue(property?:"value")		
 		switch(note) {
 			List<JvmDeclaredType>:
 				return note.map[qualifiedName.findTypeGlobally as TypeDeclaration] 
@@ -24,11 +24,11 @@ class Notes {
 		}
 	}
 	def static <T> Iterable<T> notes(Type cls,String property,AnnotationTarget declaration) {
-		val v = declaration.findAnnotation(cls).getValue(property)
+		val v = declaration.findAnnotation(cls).getValue(property?:"value")
 		return v?.asCollection
 	}
 	def static <T> T note(Type cls,String property,AnnotationTarget declaration) {
-		val v = declaration.findAnnotation(cls).getValue(property)
+		val v = declaration.findAnnotation(cls).getValue(property?:"value")
 		return v?.asNotCollection
 	}
 }

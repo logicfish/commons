@@ -8,12 +8,18 @@ import org.eclipse.xtend.lib.macro.declaration.Type
 
 import static extension com.logicfishsoftware.commons.xtend.ToString.*
 import static extension com.logicfishsoftware.commons.xtend.xannotation.Notes.*
+import java.lang.annotation.Target
+import java.lang.annotation.ElementType
+import java.lang.annotation.Retention
+import java.lang.annotation.RetentionPolicy
 
 /**
- * Create and anonymous instance of type 'value', using the optional type parameters. The optional mixin string
+ * Create an anonymous instance of type 'value', using the optional type parameters. The optional mixin string
  * is used as the constructor parameter list.
  */
 @Active(typeof(AnonymousInstanceProcessor))
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.SOURCE)
 annotation AnonymousInstance {
 	Class<?> value=typeof(Object)
 	Class<?>[] parameters=#[]
