@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Xtend
+Bundle-Name: Xtend Commons
 Bundle-SymbolicName: com.logicfishsoftware.commons.xtend
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.1.0.qualifier
 Bundle-Vendor: LOGICFISHSOFTWARE
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.eclipse.xtend.lib,
