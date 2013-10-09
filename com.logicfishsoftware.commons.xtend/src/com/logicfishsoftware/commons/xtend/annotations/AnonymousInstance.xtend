@@ -25,8 +25,7 @@ class AnonymousInstanceProcessor extends AbstractFieldProcessor {
 	override doTransform(MutableFieldDeclaration annotatedField, extension TransformationContext context) {
 		val Type cls = typeof(AnonymousInstance).notesAsClasses(annotatedField,context)?.head
 		val param = typeof(AnonymousInstance).notesAsClasses("parameters",annotatedField,context)
-		val mixinString = typeof(AnonymousInstance).findTypeGlobally.<String>notes("mixin",annotatedField)?.map[it]
-		//val String[] mixinString = switch(mixin) { String: #[ mixin ] String[] : mixin }
+		val mixin = typeof(AnonymousInstance).findTypeGlobally.<String>notes("mixin",annotatedField)?.map[it]
 		
 		annotatedField.initializer = [
 			val qName = if(object.type==cls||cls==null) {
@@ -35,7 +34,7 @@ class AnonymousInstanceProcessor extends AbstractFieldProcessor {
 				cls.qualifiedName
 			}
 			val typeParam = if(param == null || param.empty) { "" } else { "<" + param.map[it.qualifiedName].toString(",") + ">"}
-			"new " + qName + typeParam + "(" + mixinString.toString(",") + "){}"
+			"new " + qName + typeParam + "(" + mixin.toString(",") + "){}"
 		]
 	}
 	

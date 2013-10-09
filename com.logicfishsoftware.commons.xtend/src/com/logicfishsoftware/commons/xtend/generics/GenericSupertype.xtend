@@ -21,7 +21,7 @@ class GenericSupertype {
 			val r = new ArrayList<Class<?>>()			
 			cls.genericInterfaces.forEach[
 				if(it!=typeof(Object) && it!=null) {
-					if( !(it instanceof ParameterizedType) || (it instanceof ParameterizedType && (it as ParameterizedType).rawType != type)) {
+					if( !(it instanceof ParameterizedType) || (it as ParameterizedType).rawType != type) {
 						r.addAll(type.parametersOfSuper(it as Class<?>))
 					} else {
 						r.addAll((it as ParameterizedType).actualTypeArguments.convertParameters())			
@@ -32,7 +32,7 @@ class GenericSupertype {
 		} else {
 			val Type supertype = cls.genericSuperclass
 			if(supertype==typeof(Object) || supertype==null) return #[]
-			if(!(supertype instanceof ParameterizedType)||(supertype instanceof ParameterizedType && (supertype as ParameterizedType).rawType != type)) {
+			if(!(supertype instanceof ParameterizedType)||(supertype as ParameterizedType).rawType != type) {
 				return type.parametersOfSuper(supertype as Class<?>) 
 			}
 			return (supertype as ParameterizedType).actualTypeArguments.convertParameters()				
