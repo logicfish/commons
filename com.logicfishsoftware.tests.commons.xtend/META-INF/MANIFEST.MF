@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Xtend
+Bundle-SymbolicName: com.logicfishsoftware.tests.commons.xtend
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: LOGICFISHSOFTWARE
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: com.logicfishsoftware.commons.xtend;bundle-version="1.0.0",
+ org.eclipse.xtend.standalone;bundle-version="2.4.3",
+ org.junit;bundle-version="4.11.0"
