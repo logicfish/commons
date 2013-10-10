@@ -5,7 +5,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 
 public class PlatformLog {
-	public static void warn(String id,Exception e) {
+	public static void warn(String id,Throwable e) {
 		try {
 			Platform.getLog(Platform.getBundle(id)).log(new Status(IStatus.WARNING,id,e.getMessage(),e));
 		} catch (Throwable throwable) {
@@ -18,7 +18,7 @@ public class PlatformLog {
 		}
 	}
 
-	public static void error(String id,Exception e) {
+	public static void error(String id,Throwable e) {
 		try {
 			Platform.getLog(Platform.getBundle(id)).log(new Status(IStatus.ERROR,id,e.getMessage(),e));
 		} catch (Throwable throwable) {

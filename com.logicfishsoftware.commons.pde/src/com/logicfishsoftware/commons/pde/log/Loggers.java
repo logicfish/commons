@@ -4,9 +4,9 @@ import org.eclipse.core.runtime.Platform;
 
 public class Loggers {
 	public interface Log {
-		void warn(Exception e);
+		void warn(Throwable e);
 		void warn(String msg);
-		void error(Exception e);
+		void error(Throwable e);
 		void info(String msg);
 	}
 	public static Log getLogger(final String id,final Class<?> name) {
@@ -14,7 +14,7 @@ public class Loggers {
 			return new Log(){
 
 				@Override
-				public void warn(Exception e) {
+				public void warn(Throwable e) {
 					// TODO Auto-generated method stub
 					
 				}
@@ -26,7 +26,7 @@ public class Loggers {
 				}
 
 				@Override
-				public void error(Exception e) {
+				public void error(Throwable e) {
 					// TODO Auto-generated method stub
 					
 				}
@@ -41,7 +41,7 @@ public class Loggers {
 		return new Log(){
 
 			@Override
-			public void warn(Exception e) {
+			public void warn(Throwable e) {
 				PlatformLog.warn(id, e);
 			}
 
@@ -51,7 +51,7 @@ public class Loggers {
 			}
 
 			@Override
-			public void error(Exception e) {
+			public void error(Throwable e) {
 				PlatformLog.error(id, e);
 			}
 
