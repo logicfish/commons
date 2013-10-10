@@ -23,24 +23,24 @@ implements RegisterGlobalsParticipant<MemberDeclaration>, TransformationParticip
 		annotatedSourceElements.forEach[it.registerGlobals(context)]
 	}
 	def dispatch void registerGlobals(MemberDeclaration annotatedMember, extension RegisterGlobalsContext context) {}
-	def dispatch void registerGlobals(FieldDeclaration annotatedField, extension RegisterGlobalsContext context) {}
-	def dispatch void registerGlobals(MethodDeclaration annotatedMethod, extension RegisterGlobalsContext context) {}
-	def dispatch void registerGlobals(TypeDeclaration annotatedType, extension RegisterGlobalsContext context) {}
+//	def dispatch void registerGlobals(FieldDeclaration annotatedField, extension RegisterGlobalsContext context) {}
+//	def dispatch void registerGlobals(MethodDeclaration annotatedMethod, extension RegisterGlobalsContext context) {}
+//	def dispatch void registerGlobals(TypeDeclaration annotatedType, extension RegisterGlobalsContext context) {}
 
 	override doTransform(List<? extends MutableMemberDeclaration> annotatedTargetElements, extension TransformationContext context) {
 		annotatedTargetElements.forEach[it.transform(context)]
 	}
 	def dispatch void transform(MemberDeclaration annotatedMember, extension TransformationContext context) {}
-	def dispatch void transform(MutableFieldDeclaration annotatedField, extension TransformationContext context) {}
-	def dispatch void transform(MutableMethodDeclaration annotatedMethod, extension TransformationContext context) {}
-	def dispatch void transform(MutableTypeDeclaration annotatedType, extension TransformationContext context) {}
+//	def dispatch void transform(MutableFieldDeclaration annotatedField, extension TransformationContext context) {}
+//	def dispatch void transform(MutableMethodDeclaration annotatedMethod, extension TransformationContext context) {}
+//	def dispatch void transform(MutableTypeDeclaration annotatedType, extension TransformationContext context) {}
 	
 	override doGenerateCode(List<? extends MemberDeclaration> annotatedSourceElements, extension CodeGenerationContext context) {
 		annotatedSourceElements.forEach[it.generateCode(context)]
 	}
 	def dispatch void generateCode(MemberDeclaration annotatedMember, extension CodeGenerationContext context) {}
-	def dispatch void generateCode(FieldDeclaration annotatedField, extension CodeGenerationContext context) {}
-	def dispatch void generateCode(MethodDeclaration annotatedMethod, extension CodeGenerationContext context) {}
-	def dispatch void generateCode(TypeDeclaration annotatedType, extension CodeGenerationContext context) {}
+//	def dispatch void generateCode(FieldDeclaration annotatedField, extension CodeGenerationContext context) {}
+//	def dispatch void generateCode(MethodDeclaration annotatedMethod, extension CodeGenerationContext context) {}
+//	def dispatch void generateCode(TypeDeclaration annotatedType, extension CodeGenerationContext context) {}
 	
 }

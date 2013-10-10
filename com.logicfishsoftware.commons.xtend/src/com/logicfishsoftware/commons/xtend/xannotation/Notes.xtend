@@ -6,7 +6,6 @@ import org.eclipse.xtend.lib.macro.declaration.Type
 import org.eclipse.xtend.lib.macro.declaration.TypeDeclaration
 import org.eclipse.xtend.lib.macro.services.TypeLookup
 import org.eclipse.xtext.common.types.JvmDeclaredType
-import java.util.ArrayList
 
 import static extension com.logicfishsoftware.commons.xtend.CommonsCollections.*
 

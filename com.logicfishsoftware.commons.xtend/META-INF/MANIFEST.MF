@@ -5,13 +5,11 @@ Bundle-SymbolicName: com.logicfishsoftware.commons.xtend
 Bundle-Version: 1.1.0.qualifier
 Bundle-Vendor: LOGICFISHSOFTWARE
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Require-Bundle: org.eclipse.xtend.lib,
- com.google.guava,
- org.eclipse.xtext.common.types;bundle-version="2.4.3";resolution:=optional;visibility:=reexport,
- org.eclipse.emf.ecore;bundle-version="2.9.1";visibility:=reexport,
+Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.9.1";visibility:=reexport,
  org.eclipse.xtext.xbase;bundle-version="2.4.3",
  com.google.inject;bundle-version="3.0.0"
 Export-Package: com.logicfishsoftware.commons.xtend,
  com.logicfishsoftware.commons.xtend.annotations,
  com.logicfishsoftware.commons.xtend.generics,
  com.logicfishsoftware.commons.xtend.xannotation
+Bundle-ClassPath: bin/

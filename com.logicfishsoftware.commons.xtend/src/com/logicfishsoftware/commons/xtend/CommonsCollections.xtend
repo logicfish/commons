@@ -1,7 +1,5 @@
 package com.logicfishsoftware.commons.xtend
 
-import java.util.Collection
-
 import static extension java.util.Collections.*
 
 class CommonsCollections {
@@ -20,8 +18,8 @@ class CommonsCollections {
 		if(v.class.array) {
 			return v as T[]
 		}
-		if(typeof(Collection).isAssignableFrom(v.class)) {
-			return v as Collection<T>
+		if(typeof(Iterable).isAssignableFrom(v.class)) {
+			return v as Iterable<T>
 		} 
 		return (v as T).singletonList 			
 	}
@@ -29,8 +27,8 @@ class CommonsCollections {
 		if(v.class.array) {
 			return (v as T[]).head
 		}
-		if(typeof(Collection).isAssignableFrom(v.class)) {
-			return (v as Collection<T>).head
+		if(typeof(Iterable).isAssignableFrom(v.class)) {
+			return (v as Iterable<T>).head
 		} 
 		
 		return v as T 			
