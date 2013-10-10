@@ -6,8 +6,6 @@ import java.util.Map;
 
 import org.eclipse.emf.mwe2.language.Mwe2StandaloneSetup;
 import org.eclipse.emf.mwe2.launch.runtime.Mwe2Launcher;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
 
 import com.google.inject.Injector;
 

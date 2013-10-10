@@ -7,7 +7,7 @@ import org.eclipse.jdt.core.IJavaProject
 import org.eclipse.xtext.resource.XtextResourceSet
 
 abstract class EObjectClasspathProvider {
-	def static ClassLoader getClassLoader(EObject object) {
+	def static ClassLoader getClassLoader(EObject object,ClassLoader parent) {
 		val resourceSet = object.eResource.resourceSet
 		switch(resourceSet) {
 			XtextResourceSet: {
@@ -15,8 +15,8 @@ abstract class EObjectClasspathProvider {
 				return switch(ctx) {
 					ClassLoader: ctx
 					Class<?>: ctx.classLoader 
-					IJavaProject: new URLClassLoader(ProjectClasspathResolver::resolveProject(ctx),typeof(EObjectClasspathProvider).classLoader)
-					default: ctx.class.classLoader  // class.classLoader  
+					IJavaProject: new URLClassLoader(ProjectClasspathResolver::resolveProject(ctx),parent)
+					default: parent  // class.classLoader  
 				}
 			}			
 		} 
