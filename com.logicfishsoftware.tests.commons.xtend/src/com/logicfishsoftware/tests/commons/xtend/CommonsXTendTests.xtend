@@ -3,7 +3,6 @@ package com.logicfishsoftware.tests.commons.xtend
 import org.junit.Test
 
 import static extension com.logicfishsoftware.commons.xtend.CommonsCollections.*
-import static extension com.logicfishsoftware.commons.xtend.ToString.*
 import static extension org.junit.Assert.*
 
 class CommonsXTendTests {
