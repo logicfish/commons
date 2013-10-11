@@ -1,7 +1,7 @@
 package com.logicfishsoftware.commons.xtend.annotations;
 
 import com.google.common.base.Objects;
-import com.logicfishsoftware.commons.xtend.ToString;
+import com.logicfishsoftware.commons.xtend.CommonsCollections;
 import com.logicfishsoftware.commons.xtend.annotations.AnonymousInnerType;
 import com.logicfishsoftware.commons.xtend.xannotation.Notes;
 import org.eclipse.xtend.lib.macro.AbstractFieldProcessor;
@@ -83,7 +83,7 @@ public class AnonymousInnerTypeProcessor extends AbstractFieldProcessor {
               }
             };
             Iterable<String> _map = IterableExtensions.<TypeDeclaration, String>map(param, _function);
-            String _string = ToString.<String>toString(((String[])Conversions.unwrapArray(_map, String.class)), ",");
+            String _string = CommonsCollections.<String>toString(((String[])Conversions.unwrapArray(_map, String.class)), ",");
             String _plus = ("<" + _string);
             String _plus_1 = (_plus + ">");
             _xifexpression_1 = _plus_1;
@@ -92,7 +92,7 @@ public class AnonymousInnerTypeProcessor extends AbstractFieldProcessor {
           String _plus_2 = ("new " + qName);
           String _plus_3 = (_plus_2 + typeParam);
           String _plus_4 = (_plus_3 + "(");
-          String _string_1 = ToString.<String>toString(((String[])Conversions.unwrapArray(mixin, String.class)), ",");
+          String _string_1 = CommonsCollections.<String>toString(((String[])Conversions.unwrapArray(mixin, String.class)), ",");
           String _plus_5 = (_plus_4 + _string_1);
           String _plus_6 = (_plus_5 + "){}");
           _xblockexpression = (_plus_6);

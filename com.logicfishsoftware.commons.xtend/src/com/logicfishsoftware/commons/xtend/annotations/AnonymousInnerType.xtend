@@ -6,7 +6,7 @@ import org.eclipse.xtend.lib.macro.TransformationContext
 import org.eclipse.xtend.lib.macro.declaration.MutableFieldDeclaration
 import org.eclipse.xtend.lib.macro.declaration.Type
 
-import static extension com.logicfishsoftware.commons.xtend.ToString.*
+import static extension com.logicfishsoftware.commons.xtend.CommonsCollections.*
 import static extension com.logicfishsoftware.commons.xtend.xannotation.Notes.*
 import java.lang.annotation.Target
 import java.lang.annotation.ElementType
