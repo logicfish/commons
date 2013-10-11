@@ -6,13 +6,19 @@ class CommonsCollections {
 	def static <T> Iterable<T> withoutLast(T[] t) {
 		return t.take(t.length-1)
 	}
-	def static <T> Iterable<T> reverseViewIf(T[] t,boolean reverse) {
-		if (reverse) return t.reverseView
+	def static <T> Iterable<T> reverseViewIf(T[] t,boolean condition) {
+		if (condition) return t.reverseView
 		else return t
 	}
-	def static <T> Iterable<T> reverseViewIf(T[] t,()=>boolean reverse) {
-		if (reverse.apply()) return t.reverseView
+	def static <T> Iterable<T> reverseViewIf(T[] t,()=>boolean condition) {
+		if (condition.apply()) return t.reverseView
 		else return t
+	}
+	def static <T> removeIf(T[] c,T t,boolean condition) {
+		if (condition) return c.remove(t)
+	}
+	def static <T> removeIf(T[] c,T t,()=>boolean condition) {
+		if (condition.apply()) return c.remove(t)
 	}
 	def static <T> Iterable<T> asCollection(Object v) {
 		if(v.class.array) {

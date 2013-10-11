@@ -16,7 +16,8 @@ public class XAnnotationsInterpreter {
     @Inject
     XbaseInterpreter interpreter;
  
-    public Object getXAnnotationValue(XAnnotation annotation, String simpleName) {
+    @SuppressWarnings("unchecked")
+	public <T> T getXAnnotationValue(XAnnotation annotation, String simpleName) {
         IEvaluationResult result = null;
         if (simpleName.equals("value")) {
             result = interpreter.evaluate(annotation.getValue());
@@ -31,7 +32,7 @@ public class XAnnotationsInterpreter {
             }
         }
  
-        return (result != null) ? result.getResult() : null;
+        return (result != null) ? (T) result.getResult() : null;
     }
 
     public List<String> getXAnnotationValueNames(XAnnotation annotation) {
