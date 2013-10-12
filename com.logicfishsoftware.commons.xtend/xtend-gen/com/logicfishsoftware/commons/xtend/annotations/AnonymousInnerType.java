@@ -17,5 +17,6 @@ import org.eclipse.xtend.lib.macro.Active;
 public @interface AnonymousInnerType {
   public Class<? extends Object> value() default Object.class;
   public Class<? extends Object>[] parameters() default {};
-  public String[] mixin() default {};
+  public String[] ctorParam() default {};
+  public String mixin() default "";
 }

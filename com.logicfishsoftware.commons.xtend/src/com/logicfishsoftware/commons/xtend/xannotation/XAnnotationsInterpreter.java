@@ -19,7 +19,7 @@ public class XAnnotationsInterpreter {
     @SuppressWarnings("unchecked")
 	public <T> T getXAnnotationValue(XAnnotation annotation, String simpleName) {
         IEvaluationResult result = null;
-        if (simpleName.equals("value")) {
+        if ("value".equals(simpleName)) {
             result = interpreter.evaluate(annotation.getValue());
         }
  

@@ -1,6 +1,10 @@
 package com.logicfishsoftware.commons.xtend
 
+import com.google.common.collect.ImmutableList
+import java.util.Map
+
 import static extension java.util.Collections.*
+import java.util.HashMap
 
 class CommonsCollections {
 	def static <T> Iterable<T> withoutLast(T[] t) {
@@ -39,10 +43,27 @@ class CommonsCollections {
 		
 		return v as T 			
 	}
+	
 	def static <T> String toString(T[] t,String delim) {
 		if(t==null || t.empty)return ""
 		if(t.length==1)return t.head?.toString
 		return t.head?.toString + delim + t.tail?.toString(delim)
 	}
+	def static <T> String toCSVString(T[] t) {
+		t.toString(",")
+	}
+	def static <T> Iterable<T> append(T[] c,T t) {
+		ImmutableList.copyOf(c + #[t])
+	}
 	
+	def static <T> Iterable<T> append(T[] c,T ... t) {
+		ImmutableList.copyOf(c + t)
+	}
+	
+	def static <T,U> Map<T,U> filterKeys(Map<T,U> m,(T)=>boolean f) {
+		m.filter[p1, p2|f.apply(p1)]
+	}
+	def static <T,U> Map<T,U> filterValues(Map<T,U> m,(U)=>boolean f) {
+		m.filter[p1, p2|f.apply(p2)]
+	}
 }

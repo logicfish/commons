@@ -12,6 +12,7 @@ import java.lang.annotation.Target
 import java.lang.annotation.ElementType
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy
+import java.util.Collections
 
 /**
  * Create an anonymous instance of type 'value', using the optional type parameters. The optional mixin string
@@ -23,15 +24,18 @@ import java.lang.annotation.RetentionPolicy
 annotation AnonymousInnerType {
 	Class<?> value=typeof(Object)
 	Class<?>[] parameters=#[]
-	String[] mixin=#[]
+	String[] ctorParam=#[]
+	String mixin=""
 }
 
 class AnonymousInnerTypeProcessor extends AbstractFieldProcessor {
 	
 	override doTransform(MutableFieldDeclaration annotatedField, extension TransformationContext context) {
+		val annoType = typeof(AnonymousInnerType).findTypeGlobally
 		val Type cls = typeof(AnonymousInnerType).notesAsClasses(annotatedField,context)?.head
 		val param = typeof(AnonymousInnerType).notesAsClasses("parameters",annotatedField,context)
-		val mixin = typeof(AnonymousInnerType).findTypeGlobally.<String>notes("mixin",annotatedField)?.map[it]
+		val ctorParam = annoType.<String>notes("ctorParam",annotatedField)?:Collections.emptyList
+		val mixin = annoType.<String>note("mixin",annotatedField)
 		
 		annotatedField.initializer = [
 			val qName = if(object.type==cls||cls==null) {
@@ -39,8 +43,8 @@ class AnonymousInnerTypeProcessor extends AbstractFieldProcessor {
 			} else {
 				cls.qualifiedName
 			}
-			val typeParam = if(param == null || param.empty) { "" } else { "<" + param.map[it.qualifiedName].toString(",") + ">"}
-			"new " + qName + typeParam + "(" + mixin.toString(",") + "){}"
+			val typeParam = if(param == null || param.empty) { "" } else { "<" + param.map[it.qualifiedName].toCSVString() + ">"}
+			"new " + qName + typeParam + "(" + ctorParam.toCSVString() + "){" + mixin + "}"
 		]
 	}
 	
