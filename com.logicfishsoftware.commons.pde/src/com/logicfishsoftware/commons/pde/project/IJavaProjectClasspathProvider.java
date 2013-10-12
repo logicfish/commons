@@ -112,7 +112,6 @@ public class IJavaProjectClasspathProvider implements ClasspathProvider<IJavaPro
 	}
 
 	private static IPath getJavaProjectOutputAbsoluteLocation(IJavaProject project) throws IllegalStateException, JavaModelException {
-//		return project.getProject().getLocation();
 		return Platform.getLocation().append(project.getOutputLocation());
 
 	}
