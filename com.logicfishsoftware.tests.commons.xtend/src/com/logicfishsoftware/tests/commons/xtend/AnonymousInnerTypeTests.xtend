@@ -72,7 +72,7 @@ class AnonymousInnerTypeTests {
 		import «typeof(TestDummyClass).name»
 				
 		class AnonymousInnerTypeContainer {
-			@AnonymousInnerType(value=typeof(TestDummyClass),mixin=#["\"Hello\"","11"])
+			@AnonymousInnerType(value=typeof(TestDummyClass),ctorParam=#["\"Hello\"","11"])
 			TestDummyInterface i
 		}
 		'''.assertCompilesTo('''
@@ -82,7 +82,7 @@ class AnonymousInnerTypeTests {
 		
 		@SuppressWarnings("all")
 		public class AnonymousInnerTypeContainer {
-		  @AnonymousInnerType(value = TestDummyClass.class, mixin = { "\"Hello\"", "11" })
+		  @AnonymousInnerType(value = TestDummyClass.class, ctorParam = { "\"Hello\"", "11" })
 		  private TestDummyInterface i = new «typeof(TestDummyClass).name»("Hello",11){};
 		}
 		''')
@@ -111,5 +111,27 @@ class AnonymousInnerTypeTests {
 		}
 		''')
 	}
-
+	@Test
+	def void testAnonymousInnerTypeMixin() {
+		'''
+		import «typeof(AnonymousInnerType).name»
+		import «typeof(TestDummyParamInterface).name»
+		import «typeof(TestDummyParamClass).name»
+				
+		class AnonymousInnerTypeContainer {
+			@AnonymousInnerType(value=typeof(TestDummyParamClass),parameters=#[typeof(Boolean),typeof(Long),typeof(Double)],mixin="String s = null;")
+			TestDummyParamInterface<Boolean,Long,Double> i
+		}
+		'''.assertCompilesTo('''
+		import «typeof(AnonymousInnerType).name»;
+		import «typeof(TestDummyParamClass).name»;
+		import «typeof(TestDummyParamInterface).name»;
+		
+		@SuppressWarnings("all")
+		public class AnonymousInnerTypeContainer {
+		  @AnonymousInnerType(value = TestDummyParamClass.class, parameters = { Boolean.class, Long.class, Double.class }, mixin = "String s = null;")
+		  private TestDummyParamInterface<Boolean,Long,Double> i = new «typeof(TestDummyParamClass).name»<java.lang.Boolean,java.lang.Long,java.lang.Double>(){String s = null;};
+		}
+		''')
+	}
 }

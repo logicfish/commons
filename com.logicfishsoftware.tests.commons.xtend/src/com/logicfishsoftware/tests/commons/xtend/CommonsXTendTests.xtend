@@ -30,6 +30,12 @@ class CommonsXTendTests {
 	}
 	
 	@Test
+	def void testToCSVString() {
+		val String[] x = #["One","Two","Three"]
+		val String _x = x.toCSVString()
+		"One,Two,Three".assertEquals(_x)
+	}	
+	@Test
 	def void testToString() {
 		val String[] x = #["One","Two","Three"]
 		val String _x = x.toString("!!")
