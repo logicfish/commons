@@ -28,7 +28,6 @@ import static extension com.logicfishsoftware.commons.xtend.xannotation.Notes.*
 @Retention(RetentionPolicy.SOURCE)
 annotation AnonymousInnerType {
 	Class<?> value=typeof(Object)
-//	Class<?>[] parameters=#[]
 	String[] typeParamS=#[]
 	Class<?>[] typeParam=#[]
 	String[] ctorParam=#[]
@@ -44,26 +43,10 @@ class AnonymousInnerTypeProcessor extends AbstractMemberProcessor {
 	protected def dispatch void doTransformInternal(MutableMemberDeclaration annotatedField, extension TransformationContext context) {
 	}
 	protected def dispatch void doTransformInternal(MutableFieldDeclaration annotatedField, extension TransformationContext context) {
-//		val annoType = typeof(AnonymousInnerType).findTypeGlobally
-//		val Type cls = typeof(AnonymousInnerType).notesAsClasses(annotatedField,context)?.head
-//		val param = typeof(AnonymousInnerType).notesAsClasses("parameters",annotatedField,context)
-//		val ctorParam = annoType.<String>notes("ctorParam",annotatedField)?:Collections.emptyList
-//		val mixin = annoType.<String>note("mixin",annotatedField)
-//		
-//		annotatedField.initializer = [
-//			val qName = if(object.type==cls||cls==null) {
-//				annotatedField.type.type.qualifiedName
-//			} else {
-//				cls.qualifiedName
-//			}
-//			val typeParam = if(param == null || param.empty) { "" } else { "<" + param.map[it.qualifiedName].toCSVString() + ">"}
-//			"new " + qName + typeParam + "(" + ctorParam.toCSVString() + "){" + mixin + "}"
-//		]
+
 		annotatedField.initializer = [annotatedField.buildAnonymousInner(annotatedField.type.type,context)]
 	}
 
-//    @Inject
-//    XbaseInterpreter interpreter;
 	protected def dispatch void doTransformInternal(MutableMethodDeclaration annotatedMethod, extension TransformationContext context) {
 		annotatedMethod.abstract = false
 		annotatedMethod.body = [ (annotatedMethod.body?.toString ?:"") + " return " + annotatedMethod.buildAnonymousInner(annotatedMethod.returnType.type,context) + ";"]				
@@ -72,8 +55,6 @@ class AnonymousInnerTypeProcessor extends AbstractMemberProcessor {
 	def buildAnonymousInner(MemberDeclaration member, Type type,extension TransformationContext context) {
 		val annoType = typeof(AnonymousInnerType).findTypeGlobally
 		val qName = typeof(AnonymousInnerType).notesAsClasses(member,context)?.head?.qualifiedName ?: type.qualifiedName
-		//val param = typeof(AnonymousInnerType).notesAsClasses("parameters",member,context)?.map[qualifiedName]
-//		val param = notes(typeof(Object).findTypeGlobally,"parameters",member)
 		val param = typeof(AnonymousInnerType).notesAsClasses("parameters",member,context)?.map[qualifiedName]
 		val paramS = <String[]>notes(typeof(String).findTypeGlobally,"typeParamS",member)
 		
