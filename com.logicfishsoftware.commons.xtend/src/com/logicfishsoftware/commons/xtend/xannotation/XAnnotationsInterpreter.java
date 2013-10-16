@@ -54,4 +54,7 @@ public class XAnnotationsInterpreter {
         	fnc.apply(pair.getElement().getSimpleName(),interpreter.evaluate(pair.getValue()));
         }
     }
+	public <T> T getXAnnotationValue(XAnnotation annotation) {
+		return getXAnnotationValue(annotation,"value");
+	}
 }

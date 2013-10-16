@@ -53,11 +53,18 @@ class CommonsCollections {
 		t.toString(",")
 	}
 	def static <T> Iterable<T> append(T[] c,T t) {
-		ImmutableList.copyOf(c + #[t])
+		c+#[t]
+	}
+	def static <T> Iterable<T> append(T[] c,T ... t) {
+		c+t
 	}
 	
-	def static <T> Iterable<T> append(T[] c,T ... t) {
-		ImmutableList.copyOf(c + t)
+	def static <T> Iterable<T> prepend(T[] c,T t) {
+		#[t]+c
+	}
+	
+	def static <T> Iterable<T> prepend(T[] c,T ... t) {
+		t+c
 	}
 	
 	def static <T,U> Map<T,U> filterKeys(Map<T,U> m,(T)=>boolean f) {
@@ -65,5 +72,16 @@ class CommonsCollections {
 	}
 	def static <T,U> Map<T,U> filterValues(Map<T,U> m,(U)=>boolean f) {
 		m.filter[p1, p2|f.apply(p2)]
+	}
+	def static <T,U> Pair<? extends T,? extends U> put(Map<T,U> m,Pair<? extends T,? extends U> p) {
+		m.put(p.key,p.value)
+		return p
+	}
+	def static <T,U> Pair<? extends T,? extends U> removePair(Map<T,U> m,Pair<? extends T,? extends U> p) {
+		if(m.get(p.key)==p.value) {
+			m.remove(p.key)
+			return p
+		}
+		return null
 	}
 }

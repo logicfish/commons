@@ -12,11 +12,12 @@ import org.eclipse.xtend.lib.macro.Active;
  * is used as the constructor parameter list.
  */
 @Active(AnonymousInnerTypeProcessor.class)
-@Target(ElementType.FIELD)
+@Target({ ElementType.FIELD, ElementType.METHOD })
 @Retention(RetentionPolicy.SOURCE)
 public @interface AnonymousInnerType {
   public Class<? extends Object> value() default Object.class;
-  public Class<? extends Object>[] parameters() default {};
+  public String[] typeParamS() default {};
+  public Class<? extends Object>[] typeParam() default {};
   public String[] ctorParam() default {};
   public String mixin() default "";
 }

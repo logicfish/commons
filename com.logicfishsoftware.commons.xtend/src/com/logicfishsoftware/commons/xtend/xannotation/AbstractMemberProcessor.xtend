@@ -28,7 +28,7 @@ implements RegisterGlobalsParticipant<MemberDeclaration>, TransformationParticip
 	override doTransform(List<? extends MutableMemberDeclaration> annotatedTargetElements, extension TransformationContext context) {
 		annotatedTargetElements.forEach[it.doTransform(context)]
 	}
-	def dispatch void doTransform(MemberDeclaration annotatedMember, extension TransformationContext context) {}
+	def dispatch void doTransform(MutableMemberDeclaration annotatedMember, extension TransformationContext context) {}
 //	def dispatch void transform(MutableFieldDeclaration annotatedField, extension TransformationContext context) {}
 //	def dispatch void transform(MutableMethodDeclaration annotatedMethod, extension TransformationContext context) {}
 //	def dispatch void transform(MutableTypeDeclaration annotatedType, extension TransformationContext context) {}
