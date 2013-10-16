@@ -6,7 +6,7 @@ import org.eclipse.emf.ecore.EcoreFactory
 import org.eclipse.emf.ecore.EcorePackage
 
 class AnnotateEObject {
-	static def addAnnotationDetail(EAnnotation annotation, String key,String value) {
+	static def addEAnnotationDetail(EAnnotation annotation, String key,String value) {
 		val map = EcoreFactory::eINSTANCE.create(EcorePackage::eINSTANCE.getEStringToStringMapEntry()) as BasicEMap.Entry
 		map.key = key
 		map.value = value
