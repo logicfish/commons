@@ -4,7 +4,8 @@ Released under the Eclipse License 1.0 - please feel free to use and extend!
 
 Language features
 
-Synchronize active annotation - adds 'synchronized' to any method.
+Synchronize active annotation - adds 'synchronized' to any method.  See also Synchronization extension which synchronises
+a Function over an object instance.
 AnonymousInnerType - creates an inline anonymous constructor for a field or method (replaces method body).
 
 XAnnotation tools
