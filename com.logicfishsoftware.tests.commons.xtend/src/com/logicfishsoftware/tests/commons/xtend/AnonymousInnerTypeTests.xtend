@@ -38,7 +38,55 @@ class AnonymousInnerTypeTests {
 		}
 		''')
 	}
-
+	@Test
+	def void testAnonymousInnerTypeMethod() {
+		'''
+		import «typeof(AnonymousInnerType).name»
+		import «typeof(TestDummyInterface).name»
+				
+		class AnonymousInnerTypeContainer {
+			@AnonymousInnerType
+			def TestDummyInterface i() { return null; }
+		}
+		'''.assertCompilesTo('''
+		import «typeof(AnonymousInnerType).name»;
+		import «typeof(TestDummyInterface).name»;
+		
+		@SuppressWarnings("all")
+		public class AnonymousInnerTypeContainer {
+		  @AnonymousInnerType
+		  public TestDummyInterface i() {
+		     return new «typeof(TestDummyInterface).name»(){};
+		  }
+		}
+		''')
+	}
+	@Test
+	def void testAnonymousInnerTypeMethod2() {
+		'''
+		import «typeof(AnonymousInnerType).name»
+		import «typeof(TestDummyInterface).name»
+				
+		class AnonymousInnerTypeContainer {
+			@AnonymousInnerType
+			def TestDummyInterface i() { 
+				val i = 10
+				return null
+			}
+		}
+		'''.assertCompilesTo('''
+		import «typeof(AnonymousInnerType).name»;
+		import «typeof(TestDummyInterface).name»;
+		
+		@SuppressWarnings("all")
+		public class AnonymousInnerTypeContainer {
+		  @AnonymousInnerType
+		  public TestDummyInterface i() {
+		     return new «typeof(TestDummyInterface).name»(){};
+		  }
+		}
+		''')
+	}
 	@Test
 	def void testAnonymousInnerTypeClass() {
 		'''
