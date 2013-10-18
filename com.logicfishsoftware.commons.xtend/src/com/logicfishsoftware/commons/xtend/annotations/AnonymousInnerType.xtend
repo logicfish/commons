@@ -1,6 +1,5 @@
 package com.logicfishsoftware.commons.xtend.annotations
 
-import com.google.inject.Inject
 import com.logicfishsoftware.commons.xtend.xannotation.AbstractMemberProcessor
 import java.lang.annotation.ElementType
 import java.lang.annotation.Retention
@@ -14,7 +13,6 @@ import org.eclipse.xtend.lib.macro.declaration.MutableFieldDeclaration
 import org.eclipse.xtend.lib.macro.declaration.MutableMemberDeclaration
 import org.eclipse.xtend.lib.macro.declaration.MutableMethodDeclaration
 import org.eclipse.xtend.lib.macro.declaration.Type
-import org.eclipse.xtext.xbase.interpreter.impl.XbaseInterpreter
 
 import static extension com.logicfishsoftware.commons.xtend.CommonsCollections.*
 import static extension com.logicfishsoftware.commons.xtend.xannotation.Notes.*
@@ -55,15 +53,19 @@ class AnonymousInnerTypeProcessor extends AbstractMemberProcessor {
 	def buildAnonymousInner(MemberDeclaration member, Type type,extension TransformationContext context) {
 		val annoType = typeof(AnonymousInnerType).findTypeGlobally
 		val qName = typeof(AnonymousInnerType).notesAsClasses(member,context)?.head?.qualifiedName ?: type.qualifiedName
-		val param = typeof(AnonymousInnerType).notesAsClasses("parameters",member,context)?.map[qualifiedName]
+		val param = typeof(AnonymousInnerType).notesAsClasses("typeParam",member,context)?.map[qualifiedName]
 		val paramS = <String[]>notes(typeof(String).findTypeGlobally,"typeParamS",member)
 		
 		val ctorParam = annoType.<String>notes("ctorParam",member)?:Collections.emptyList
 		val mixin = annoType.<String>note("mixin",member)
-		val typeParam = 
-			if(param!=null&&!param.empty) { "<" + param.toCSVString() + ">"}
-			else if(paramS == null || paramS.empty) { "" } else { "<" + paramS.toCSVString() + ">"}
-		return "new " + qName + typeParam + "(" + ctorParam.toCSVString() + "){" + mixin + "}"
+//		val typeParam = 
+//			if(param!=null&&!param.empty) { "<" + param.toCSVString() + ">"}
+//			else if(paramS == null || paramS.empty) { "" } else { "<" + paramS.toCSVString() + ">"}
+//		return "new " + qName + typeParam + "(" + ctorParam.toCSVString() + "){" + mixin + "}"
+		'''
+			new «qName»«IF param!=null && !param.empty»<«param.toCSVString»>«ELSEIF paramS!=null && !paramS.empty»<«paramS.toCSVString»>«ENDIF»
+				(«ctorParam?.toCSVString»){«mixin?:""»}
+		'''
 	}
 	
 }

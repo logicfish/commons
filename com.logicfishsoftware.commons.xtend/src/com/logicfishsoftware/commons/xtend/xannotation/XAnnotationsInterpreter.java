@@ -21,7 +21,7 @@ public class XAnnotationsInterpreter {
 	public <T> T getXAnnotationValue(XAnnotation annotation, String simpleName) {
         IEvaluationResult result = null;
         EcoreUtil.resolveAll(annotation);
-        if ("value".equals(simpleName)) {
+        if ("value".equals(simpleName) && annotation.getValue()!=null) {
             result = interpreter.evaluate(annotation.getValue());
         }
  

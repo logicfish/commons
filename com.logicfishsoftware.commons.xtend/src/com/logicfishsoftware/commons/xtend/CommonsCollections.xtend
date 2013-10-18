@@ -1,10 +1,10 @@
 package com.logicfishsoftware.commons.xtend
 
-import com.google.common.collect.ImmutableList
 import java.util.Map
+import org.eclipse.xtext.xbase.lib.Pair
 
 import static extension java.util.Collections.*
-import java.util.HashMap
+import java.util.List
 
 class CommonsCollections {
 	def static <T> Iterable<T> withoutLast(T[] t) {
@@ -24,7 +24,12 @@ class CommonsCollections {
 	def static <T> removeIf(T[] c,T t,()=>boolean condition) {
 		if (condition.apply()) return c.remove(t)
 	}
-	def static <T> Iterable<T> asCollection(Object v) {
+	def static <T> Iterable<T> removeEach(List<T> list,(T)=>void fnc) {
+		list.forEach[if(list.remove(it))fnc.apply(it)]
+		return list
+	}
+
+	def static <T> Iterable<T> asCollection(Object v) throws ClassCastException {
 		if(v.class.array) {
 			return v as T[]
 		}
@@ -33,7 +38,7 @@ class CommonsCollections {
 		} 
 		return (v as T).singletonList 			
 	}
-	def static <T> T asNotCollection(Object v) {
+	def static <T> T asNotCollection(Object v) throws ClassCastException {
 		if(v.class.array) {
 			return (v as T[]).head
 		}
@@ -84,4 +89,6 @@ class CommonsCollections {
 		}
 		return null
 	}
+	
+	
 }
